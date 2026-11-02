@@ -17,6 +17,29 @@ public class MascotaService {
 
         return mascotaDAO.Altamascota(m);
     }
+    public void modificarMascota(Mascota m) {
+        mascotaDAO = new MascotaDAO();
+        boolean estaModificada = mascotaDAO.modificarMascota(m);
+        if (estaModificada) {
+            System.out.println("Mascota Modificada");
+        }else {
+            System.out.println("La mascota no existe");
+        }
+    }
+    public void listar_mascotas() {
+        mascotaDAO = new MascotaDAO();
+        mascotaDAO.listar_mascotas();
+    }
+    public void  eliminar_mascota(Mascota m) {
+        mascotaDAO = new MascotaDAO();
+        boolean estaEliminado = mascotaDAO.eliminar_mascota(m);
+        if (estaEliminado) {
+            System.out.println("Mascota Eliminada");
+        }else  {
+            System.out.println("La mascota no existe");
+        }
+
+    }
 
     public void buscarChip(Mascota m){
         mascotaDAO = new MascotaDAO();

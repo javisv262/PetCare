@@ -25,6 +25,14 @@ public class MascotaDAO {
         bd.close();
         return true;
     }
+    public Mascota buscarChip(Mascota m){
+        conexionDb4o = new ConexionDb4o();
+        ObjectContainer bd =conexionDb4o.abrirConexion();
+        Mascota mascota = buscarAtributo(m,bd);
+        bd.close();
+        return mascota;
+
+    }
     private int calcularID(ObjectContainer bd){
         ObjectSet<Mascota> todasMascotas = bd.queryByExample(new Mascota());
         int maxId = 0;
@@ -36,16 +44,38 @@ public class MascotaDAO {
         }
         return maxId+1;
     }
-    public Mascota buscarChip(Mascota m){
+    public void listar_mascotas(){
         conexionDb4o = new ConexionDb4o();
         ObjectContainer bd =conexionDb4o.abrirConexion();
-        ObjectSet<Mascota> todasMascotas = bd.queryByExample(m);
-        Mascota mascota = null;
-        if(todasMascotas.hasNext()){
-            mascota = todasMascotas.next();
+        ObjectSet<Mascota> todasMascotas = bd.queryByExample(new Mascota());
+        for (Mascota m : todasMascotas) {
+            System.out.println(m);
         }
         bd.close();
-        return mascota;
+    }
+    private Mascota buscarAtributo(Mascota mascota, ObjectContainer bd){
+        ObjectSet<Mascota> todasMascotas = bd.queryByExample(mascota);
+        Mascota m = null;
+        if(todasMascotas.hasNext()){
+            m = todasMascotas.next();
+        }
+        return m;
+    }
+    public boolean eliminar_mascota(Mascota mascota) {
+        conexionDb4o = new ConexionDb4o();
+        ObjectContainer bd =conexionDb4o.abrirConexion();
+        Mascota m = buscarAtributo(mascota,bd);
+
+        if(m!=null){
+            bd.delete(m);
+            bd.commit();
+            bd.close();
+            return true;
+        }else {
+            bd.close();
+            return false;
+        }
+
     }
 
     private boolean comprobarChip (ObjectContainer bd, Mascota m) {
@@ -57,4 +87,25 @@ public class MascotaDAO {
         }
         return false;
     }
+    public boolean modificarMascota(Mascota mascota) {
+        conexionDb4o = new ConexionDb4o();
+        ObjectContainer bd =conexionDb4o.abrirConexion();
+        Mascota m = new Mascota();
+        m.setId(mascota.getId());
+        m = buscarAtributo(m,bd);
+        if(m!=null){
+            m.setChip(mascota.getChip());
+            m.setNombre(mascota.getNombre());
+            m.setEspecie(mascota.getEspecie());
+            m.setEdad(mascota.getEdad());
+
+            bd.store(m);
+            bd.commit();
+            bd.close();
+            return true;
+        }else {
+            bd.close();
+            return false;
+        }
+  }
 }
