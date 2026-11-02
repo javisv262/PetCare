@@ -56,6 +56,6 @@ public class Mascota {
     }
     @Override
     public String toString() {
-        return "ID: "+id+"chip: "+chip+" nombre: "+nombre+" especie: "+especie+" edad: "+edad;
+        return "ID: "+id+" chip: "+chip+" nombre: "+nombre+" especie: "+especie+" edad: "+edad;
     }
 }

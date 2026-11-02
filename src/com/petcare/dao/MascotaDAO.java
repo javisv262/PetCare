@@ -36,6 +36,17 @@ public class MascotaDAO {
         }
         return maxId+1;
     }
+    public Mascota buscarChip(Mascota m){
+        conexionDb4o = new ConexionDb4o();
+        ObjectContainer bd =conexionDb4o.abrirConexion();
+        ObjectSet<Mascota> todasMascotas = bd.queryByExample(m);
+        Mascota mascota = null;
+        if(todasMascotas.hasNext()){
+            mascota = todasMascotas.next();
+        }
+        bd.close();
+        return mascota;
+    }
 
     private boolean comprobarChip (ObjectContainer bd, Mascota m) {
         ObjectSet<Mascota> todasMascotas = bd.queryByExample(new Mascota());

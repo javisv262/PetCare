@@ -1,5 +1,6 @@
 package com.petcare.main;
 
+import com.db4o.ObjectSet;
 import com.petcare.dao.MascotaDAO;
 import com.petcare.entity.Mascota;
 import com.petcare.service.MascotaService;
@@ -31,7 +32,8 @@ public class menuMascotas {
                         registrar_mascota();
                         break;
                     case 2:
-
+                        buscar_chip();
+                        break;
                     case 3:
 
                     case 4:
@@ -53,7 +55,10 @@ public class menuMascotas {
     private static void buscar_chip(){
         Mascota m = new Mascota();
 
-        System.out.println();
+        System.out.println("Introduce el chip");
+        m.setChip(teclado.next());
+        ms.buscarChip(m);
+
     }
     private static void registrar_mascota() {
         String chip = "";
@@ -64,7 +69,7 @@ public class menuMascotas {
             System.out.println("Introduce el chip(7 caracteres)");
             chip = teclado.next();
             System.out.println("Introduce el nombre");
-            nombre = teclado.next();
+            nombre = teclado.nextLine();
             System.out.println("Introduce la especie");
             especie = teclado.next();
             System.out.println("Introduce la edad");
