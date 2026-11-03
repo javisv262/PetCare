@@ -48,6 +48,6 @@ public class Veterinario {
     }
     @Override
     public String toString() {
-        return "ID: " + id +"numColegiado: "+numColegiado+ " Nombre: " + nombre + " Especialidad: " + especialidad;
+        return "ID: " + id +" numColegiado: "+numColegiado+ " Nombre: " + nombre + " Especialidad: " + especialidad;
     }
 }

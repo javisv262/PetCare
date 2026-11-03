@@ -15,6 +15,7 @@ public class MascotaDAO {
 
         if(comprobarChip(bd,m)){
             System.out.println("El chip esta repetido");
+            bd.close();
             return false;
         }
         int id = calcularID(bd);
@@ -94,7 +95,6 @@ public class MascotaDAO {
         m.setId(mascota.getId());
         m = buscarAtributo(m,bd);
         if(m!=null){
-            m.setChip(mascota.getChip());
             m.setNombre(mascota.getNombre());
             m.setEspecie(mascota.getEspecie());
             m.setEdad(mascota.getEdad());

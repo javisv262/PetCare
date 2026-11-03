@@ -58,26 +58,23 @@ public class menuMascotas {
     }
     private static void eliminar_mascota() {
         Mascota m = new Mascota();
-        System.out.println("Introduce el id de la mascota a eliminar");
-        m.setId(teclado.nextInt());
-        ms.eliminar_mascota(m);
+        try {
+            System.out.println("Introduce el id de la mascota a eliminar");
+            m.setId(teclado.nextInt());
+            ms.eliminar_mascota(m);
+        } catch (InputMismatchException e) {
+            System.out.println("Error, el valor introducido es invalido");
+        }
     }
     private static void modificar_mascota() {
-        int id = 0;
-        String chip = "";
-        String nombre = "";
-        String especie = "";
-        int edad = 0;
         Mascota m = new Mascota();
         try {
             System.out.println("Introduce el ID de la mascota cuyos datos se van a modificar");
             m.setId(teclado.nextInt());
             System.out.println("Rellena la nueva informacion que sustituira la anterior:");
-            System.out.println("Introduce el chip (7 caracteres) ");
-            m.setChip(teclado.next());
             System.out.println("Introduce el nombre de la mascota ");
             m.setNombre(teclado.next());
-            System.out.println("introduce la especie de la mascota ");
+            System.out.println("Introduce la especie de la mascota ");
             m.setEspecie(teclado.next().toLowerCase(Locale.ROOT));
             System.out.println("Introduce la edad de la mascota ");
             m.setEdad(teclado.nextInt());
@@ -115,6 +112,7 @@ public class menuMascotas {
             edad = teclado.nextInt();
         }catch(InputMismatchException ex) {
             System.out.println("Error, asegurate de introducir valores validos");
+            return;
         }
         Mascota m = new Mascota(chip, nombre, especie, edad);
 

@@ -19,10 +19,13 @@ public class App {
                 switch (modulo) {
                     case 1:
                         menuMascotas.visualizar();
-
+                        break;
                     case 2:
-
+                        menuVeterinarios.visualizar();
+                        break;
                     case 3:
+                        System.out.println("Finalizando programa...");
+                        System.exit(0);
 
                     default:
                         System.out.println("Ingrese una opcion valida");
